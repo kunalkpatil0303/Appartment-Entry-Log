@@ -1,2 +1,67 @@
-# Appartment-Entry-Log
-it is Apartment Entry web/app 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apartment Entry Log</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #entries {
+      margin-top: 20px;
+    }
+    .entry {
+      background: #fff;
+      border-left: 4px solid #007BFF;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Apartment Entry Log</h1>
+
+  <input type="text" id="name" placeholder="Enter Name">
+  <input type="text" id="flat" placeholder="Enter Flat Number">
+  <input type="text" id="purpose" placeholder="Enter Purpose">
+  <button onclick="addEntry()">Add Entry</button>
+
+  <div id="entries"></div>
+
+  <script>
+    function addEntry() {
+      const name = document.getElementById('name').value;
+      const flat = document.getElementById('flat').value;
+      const purpose = document.getElementById('purpose').value;
+
+      if (name && flat && purpose) {
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'entry';
+        entryDiv.innerHTML = `<strong>${name}</strong> (Flat ${flat}) - ${purpose} <br><small>${new Date().toLocaleString()}</small>`;
+        document.getElementById('entries').appendChild(entryDiv);
+
+        // Clear inputs
+        document.getElementById('name').value = '';
+        document.getElementById('flat').value = '';
+        document.getElementById('purpose').value = '';
+      } else {
+        alert("Please fill all fields.");
+      }
+    }
+  </script>
+
+</body>
+</html>
